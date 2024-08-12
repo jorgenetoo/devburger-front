@@ -8,8 +8,12 @@ import { Button } from '../../components/Button'
 import Logo from '../../assets/Logo.svg'
 import { Container, LeftContainer, RightContainer, Title, Form, InputContainer, Link } from "./styles"
 import { useNavigate } from "react-router-dom"
+import { userUser } from "../../hooks/UserContext"
 
 export function Login() {
+    const { putUserData } = userUser()
+    
+
     const navigate = useNavigate()
     const schema = yup
         .object({
@@ -49,6 +53,9 @@ export function Login() {
 
 
         )
+
+        putUserData(data)
+        
     }
 
 
@@ -72,8 +79,8 @@ export function Login() {
                         <label> senha</label>
                         <input type="password"{...register("password")} />
                         <p>{errors?.password?.message}</p>
-                    </InputContainer> 
-                    <Button type="submit" style= {{marginTop: 75, marginBottom:25}}>Entrar</Button>
+                    </InputContainer>
+                    <Button type="submit" style={{ marginTop: 75, marginBottom: 25 }}>Entrar</Button>
                 </Form>
                 <p>
                     Não possui conta? <Link to='/cadastro'>Clique aqui.</Link>

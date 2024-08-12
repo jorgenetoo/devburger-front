@@ -98,3 +98,6 @@ export function Register() {
         </Container>
     )
 }
+
+
+export default Register
