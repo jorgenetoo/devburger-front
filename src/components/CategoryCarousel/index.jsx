@@ -1,8 +1,8 @@
 import React, { useEffect } from "react"
 
 import Category from '../../assets/category.png'
-import { Container, CategoryImg } from './styles'
-import api from '../../services/api'
+import { Container, CategoryImg } from './styles.js'
+import { api } from '../../services/api';
 
 function CategoryCarousel() {
 
