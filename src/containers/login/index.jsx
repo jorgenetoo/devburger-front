@@ -7,12 +7,13 @@ import { toast, ToastContainer } from "react-toastify"
 import { Button } from '../../components/Button'
 import Logo from '../../assets/Logo.svg'
 import { Container, LeftContainer, RightContainer, Title, Form, InputContainer, Link } from "./styles"
-import { useNavigate } from "react-router-dom"
+import { useNavigate, useHistory } from "react-router-dom"
 import { userUser } from "../../hooks/UserContext"
 
 export function Login() {
+    const history = useHistory()
     const { putUserData } = userUser()
-    
+
 
     const navigate = useNavigate()
     const schema = yup
@@ -55,7 +56,12 @@ export function Login() {
         )
 
         putUserData(data)
-        
+
+        setTimeout(() => {
+            history.push('/')
+        }, 1000)
+
+
     }
 
 
