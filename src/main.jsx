@@ -9,11 +9,11 @@ import { UserProvider } from './hooks/UserContext';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <RouterProvider router={router}>
-      <UserProvider>
+    <UserProvider>
+      <RouterProvider router={router}>
         <GlobalStyles />
-        <ToastContainer autoClose={2000} theme='colored' />
-             </UserProvider>
-    </RouterProvider>
-  </React.StrictMode>
+        <ToastContainer autoClose={2000} theme="colored" />
+      </RouterProvider>
+    </UserProvider>
+  </React.StrictMode>,
 );

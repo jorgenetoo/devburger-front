@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form"
 import { yupResolver } from "@hookform/resolvers/yup"
 import * as yup from "yup"
-import { api } from '../../services/api'
+import api  from '../../services/api'
 import { toast, ToastContainer } from "react-toastify"
 
 import { Button } from '../../components/Button'

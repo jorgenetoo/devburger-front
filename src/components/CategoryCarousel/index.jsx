@@ -3,7 +3,7 @@ import Carousel from 'react-elastic-carousel'
 
 import Category from '../../assets/category.png'
 import { Container, CategoryImg, ContainerItems, Image, Button} from './styles.js'
-import { api } from '../../services/api';
+import api  from '../../services/api';
 
 function CategoryCarousel() {
     const [categories, setCategories] = useState([])
