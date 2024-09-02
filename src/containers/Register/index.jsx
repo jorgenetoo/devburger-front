@@ -4,7 +4,7 @@ import * as yup from "yup"
 import api  from '../../services/api'
 import { toast, ToastContainer } from "react-toastify"
 
-import { Button } from '../../components/Button'
+import { Button } from '../../components'
 import Logo from '../../assets/Logo.svg'
 import { Container, LeftContainer, RightContainer, Title, Form, InputContainer, Link } from "./styles"
 import { useNavigate } from "react-router-dom"
@@ -100,4 +100,3 @@ export function Register() {
 }
 
 
-export default Register

@@ -6,7 +6,7 @@ import { Container, CategoryImg, ContainerItems, Image, Button } from './styles.
 import api from '../../services/api';
 import formatCurrency from '../../utils/formatCurrency.jsx'
 
-function OffersCarousel() {
+export function OffersCarousel() {
     const [offers, setOffers] = useState([])
 
     useEffect(() => {
@@ -53,4 +53,3 @@ function OffersCarousel() {
     )
 }
 
-export default OffersCarousel
