@@ -7,13 +7,22 @@ const CartContext = createContext({})
 export const CartProvider = ({ children }) => {
     const [cartProducts, setCartProducts] = useState([])
 
-    const putProductIncCart = async product => {
+    const updateLocalStorage = async (products) => {
+        await localStorage.setItem(
+            'codeburger:cartInfo',
+            JSON.stringify(products)
+        )
+    }
+
+    const putProductInCart = async product => {
         const cartIndex = cartProducts.findIndex(prd => prd.id === product.id)
 
         let newCartProducts = []
         if (cartIndex >= 0) {
             newCartProducts = cartProducts
-            newCartProducts[cartIndex].quantity = newCartProducts[cartIndex].quantity + 1
+
+            newCartProducts[cartIndex].quantity =
+                newCartProducts[cartIndex].quantity + 1
             setCartProducts(newCartProducts)
 
         } else {
@@ -22,8 +31,53 @@ export const CartProvider = ({ children }) => {
             setCartProducts(newCartProducts)
         }
 
-        await localStorage.setItem('codeburger:cartInfo', JSON.stringify(newCartProducts))
+        await updateLocalStorage(newCartProducts)
+
     }
+
+    const deleteProducts = async productId => {
+        const newCart = cartProducts.filter(product => product.id != productId)
+
+        setCartProducts(newCart)
+
+        await updateLocalStorage(newCart)
+
+    }
+
+    const increaseProducts = async productId => {
+        const newCart = cartProducts.map(product => {
+            return product.id === productId ? { ...product, quantity: product.quantity + 1 } : product
+
+        })
+        setCartProducts(newCart)
+
+        await updateLocalStorage(newCart)
+
+    }
+
+
+    const decreaseProducts = async productId => {
+        const cartIndex = cartProducts.findIndex(pd => pd.id === productId)
+
+        if (cartProducts[cartIndex].quantity > 1) {
+
+            const newCart = cartProducts.map(product => {
+                return product.id === productId ? { ...product, quantity: product.quantity - 1 } : product
+
+            })
+            setCartProducts(newCart)
+
+            await localStorage.setItem(
+                'codeburger:cartInfo',
+                JSON.stringify(newCart)
+            )
+        } else {
+            deleteProducts(productId)
+        }
+
+
+    }
+
 
     useEffect(() => {
         const loadUserDate = async () => {
@@ -39,18 +93,18 @@ export const CartProvider = ({ children }) => {
     }, [])
 
     return (
-        <CartContext.Provider value={{ putProductIncCart, cartProducts }}>
+        <CartContext.Provider value={{ putProductInCart, cartProducts, increaseProducts, decreaseProducts }}>
             {children}
         </CartContext.Provider>
     )
 
 }
 
-export const userCart = () => {
+export const useCart = () => {
     const context = useContext(CartContext)
 
     if (!context) {
-        throw new Error('userCart must be used with UserContext')
+        throw new Error('useCart must be used with UserContext')
     }
 
     return context

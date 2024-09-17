@@ -1,32 +1,42 @@
 import React from "react"
 
-import { userCart } from "../../hooks/CartContext.jsx";
-import { Container, Header, Body } from './styles.js'
+import { useCart } from "../../hooks/CartContext.jsx";
+import { Container, Header, Body, EmptyCart } from './styles.js'
 import formatCurrency from "../../utils/formatCurrency.jsx";
 
 
 export function CartItems() {
-const {cartProducts} = userCart()
+    const { cartProducts , increaseProducts, decreaseProducts} = useCart()
+    console.log(cartProducts)
     return (
         <Container>
             <Header>
                 <p></p>
                 <p>Itens</p>
                 <p>Preço</p>
-                <p>Quantidade</p>
+                <p style={{ paddingRight: 30 }}>Quantidade</p>
                 <p>Total</p>
             </Header>
 
-{cartProducts && cartProducts.map( product => (            
-            <Body key={product.id}>
-              <img src={product.url}/>  
-              <p>{product.name}</p>
-              <p>{formatCurrency(product.price)}</p>
-              <p>{product.quantity}</p>
-              <p>{formatCurrency(product.quantity * product.price)}</p>
+            {cartProducts && cartProducts.length > 0 ?
+                cartProducts.map(product => (
+                    <Body key={product.id}>
+                        <img src={product.url} />
+                        <p>{product.name}</p>
+                        <p>{formatCurrency(product.price)}</p>
+                        <div className="quantity-container">
+                            <button onClick={()=> decreaseProducts(product.id)}>-</button>
+                            <p>{product.quantity}</p>
+                            <button onClick={() => increaseProducts(product.id)}>+</button>
+                        </div>
+                        <p>{formatCurrency(product.quantity * product.price)}</p>
 
-            </Body>
-            ))}
+                    </Body>
+                ))
+                : (
+                    <EmptyCart>Carrinho Vazio</EmptyCart>
+                )
+            }
         </Container>
     );
 }
