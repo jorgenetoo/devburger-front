@@ -3,31 +3,23 @@ import { Navigate, Outlet } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { Header } from "../components";
 
-function PrivateRoute({ component, ...rest }) {
+function PrivateRoute() {
     const user = localStorage.getItem('codeburger:userData');
 
-if (!user) {
-    return <Redirect to='/login'/>
+    if (!user) {
+        return <Navigate to="/login" replace />;
+    }
+
+    return (
+        <>
+            <Header />
+            <Outlet />
+        </>
+    );
 }
-
-return(
-    <>
-    <Header />
-    <Route {...rest} component = {component}/>
-    </>
-)
-}
-
-
-    //     return user ? 
-    
-//     <Component {...rest} /> :
-//     <>
-//     <Header/> <Navigate to="/login" replace />;
-//     </>
-// }
-
-export default PrivateRoute;
 
 PrivateRoute.propTypes = {
-    component: PropTypes.oneOfType([PropTypes.func, PropTypes.element])}
+    component: PropTypes.oneOfType([PropTypes.func, PropTypes.element]),
+};
+
+export default PrivateRoute;
