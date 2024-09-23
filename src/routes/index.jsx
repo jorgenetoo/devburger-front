@@ -1,7 +1,7 @@
 import React from "react";
 import { createBrowserRouter } from "react-router-dom";
 
-import { Home, Products, Login, Register, Cart } from '../containers';
+import { Home, Products, Login, Register, Cart , Admin} from '../containers';
 import PrivateRoute from './private-route';
 
 export const router = createBrowserRouter([
@@ -28,6 +28,12 @@ export const router = createBrowserRouter([
             {
                 path: 'carrinho',
                 element: <Cart />,
+            },
+
+            {
+                path: 'pedidos', 
+                isAdmin:true,
+                element: <Admin />,
             },
         ],
     },
