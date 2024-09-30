@@ -1,29 +1,31 @@
-import React from "react";
+import React from 'react';
 import { Navigate, Outlet } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { Header } from "../components";
+import { Header } from '../components';
 
-function PrivateRoute({isAdmin,...rest}) {
-    const user = localStorage.getItem('codeburger:userData');
+function PrivateRoute({ isAdmin }) {
+  const user = localStorage.getItem('codeburger:userData');
 
-    if (!user) {
-        return <Navigate to="/login" replace />;
-    }
-if(isAdmin && !JSON.parse(user).admin) {
+  if (!user) {
+    return <Navigate to="/login" replace />;
+  }
+
+  const userData = JSON.parse(user);
+
+  if (isAdmin && !userData.admin) {
     return <Navigate to="/" replace />;
-}
+  }
 
-    return (
-        <>
-            {!isAdmin && <Header />}
-            <Outlet />
-        </>
-    );
+  return (
+    <>
+      {!userData.admin && <Header />}
+      <Outlet />
+    </>
+  );
 }
 
 PrivateRoute.propTypes = {
-    component: PropTypes.oneOfType([PropTypes.func, PropTypes.element]),
-    isAdmin: PropTypes.bool
+  isAdmin: PropTypes.bool,
 };
 
 export default PrivateRoute;
