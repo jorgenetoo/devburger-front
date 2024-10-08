@@ -3,6 +3,7 @@ import { createBrowserRouter } from "react-router-dom";
 
 import { Home, Products, Login, Register, Cart , Admin} from '../containers';
 import PrivateRoute from './private-route';
+import paths from "../constants/paths";
 
 export const router = createBrowserRouter([
     {
@@ -31,7 +32,12 @@ export const router = createBrowserRouter([
             },
 
             {
-                path: 'pedidos', 
+                path: paths.Order, 
+                isAdmin:true,
+                element: <Admin />,
+            },
+            {
+                path: paths.Products, 
                 isAdmin:true,
                 element: <Admin />,
             },
