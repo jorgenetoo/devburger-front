@@ -9,13 +9,13 @@ import paths from "../../constants/paths";
 import { useLocation } from "react-router-dom";
 
 
-export function Admin() {
+export function Admin({path}) {
     const location = useLocation();
     const pathname = location.pathname;
 
     return (
         <Container>
-            <SideMenuAdmin />
+            <SideMenuAdmin path={path}/>
             <ContainerItems>
                 {pathname === paths.Order && <Orders/>}
                 {pathname === paths.Products && <ListProducts />}                
