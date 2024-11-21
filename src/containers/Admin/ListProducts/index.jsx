@@ -13,10 +13,13 @@ import Paper from '@mui/material/Paper';
 import CheckBoxIcon from '@mui/icons-material/CheckBox';
 import CancelIcon from '@mui/icons-material/Cancel';
 import formatCurrency from "../../../utils/formatCurrency.jsx";
+import { useHistory } from 'react-router-dom'
+import paths from "../../../constants/paths.jsx";
 
 
 function ListProducts() {
     const [products, SetProducts] = useState()
+    const { push } = useHistory()
 
     useEffect(() => {
         async function loadOrders() {
@@ -32,6 +35,10 @@ function ListProducts() {
             return <CheckBoxIcon style={{ color: '#228B22' }} />
         }
         return <CancelIcon style={{ color: '#B22222' }} />
+    }
+
+    function editProduct(product) {
+        push(paths.EditProduct, {product})
     }
 
     return (
@@ -63,7 +70,7 @@ function ListProducts() {
                                         <Img src={product.url} alt='imagem-produto' />
                                     </TableCell>
                                     <TableCell >
-                                        <EditIconStyles />
+                                        <EditIconStyles onClick={() => editProduct(product)} />
                                     </TableCell>
                                 </TableRow>
                             ))}

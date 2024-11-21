@@ -41,6 +41,17 @@ export const router = createBrowserRouter([
                 isAdmin:true,
                 element: <Admin />,
             },
+            {
+                path: paths.NewProduct, 
+                isAdmin:true,
+                element: <Admin />,
+            },
+            {
+                path: paths.EditProduct, 
+                isAdmin:true,
+                element: <Admin />,
+            },
+            
         ],
     },
 ]);
