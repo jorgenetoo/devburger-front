@@ -10,7 +10,7 @@ import { Container, Label, Input, ButtonStyles, LabelUpload } from './styles.js'
 import api from '../../../services/api'
 import { toast } from "react-toastify";
 
-function EditProduct() {
+function NewProduct() {
     const [fileName, setFileName] = useState(null)
     const [categories, setCategories] = useState([])
     const navigate = useNavigate();
@@ -120,4 +120,4 @@ function EditProduct() {
     );
 }
 
-export default EditProduct
+export default NewProduct

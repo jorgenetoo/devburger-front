@@ -13,13 +13,13 @@ import Paper from '@mui/material/Paper';
 import CheckBoxIcon from '@mui/icons-material/CheckBox';
 import CancelIcon from '@mui/icons-material/Cancel';
 import formatCurrency from "../../../utils/formatCurrency.jsx";
-import { useHistory } from 'react-router-dom'
+import { useNavigate } from "react-router-dom"
 import paths from "../../../constants/paths.jsx";
 
 
 function ListProducts() {
     const [products, SetProducts] = useState()
-    const { push } = useHistory()
+    const navigate = useNavigate()
 
     useEffect(() => {
         async function loadOrders() {
@@ -36,11 +36,10 @@ function ListProducts() {
         }
         return <CancelIcon style={{ color: '#B22222' }} />
     }
-
     function editProduct(product) {
-        push(paths.EditProduct, {product})
-    }
-
+        navigate(paths.EditProduct, { state: { product } }); // Uso do navigate
+      }
+    
     return (
         <Container>
             <TableContainer component={Paper}>
