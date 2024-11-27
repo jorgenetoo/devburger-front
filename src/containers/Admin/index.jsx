@@ -8,7 +8,7 @@ import PropTypes from "prop-types";
 import paths from "../../constants/paths";
 import { useLocation } from "react-router-dom";
 import NewProduct from "./NewProduct";
-import EditProduct from "./NewProduct";
+import EditProduct from "./EditProduct";
 
 
 export function Admin() {

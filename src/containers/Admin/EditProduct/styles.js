@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Button } from "../../../components/index.js"
+import { Button } from "../../../components";
 
 
 export const Container = styled.div`

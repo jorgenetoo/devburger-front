@@ -127,11 +127,14 @@ function EditProduct() {
 
                 <ContainerInput> 
 
-                <input type="checkbox" {...register('offer')} defaultChecked={product.offer} />
+                <input type="checkbox" 
+                {...register('offer')} 
+                defaultChecked={product.offer} />
+
                 <Label>Produto em oferta</Label>
                 </ContainerInput>
 
-                <ButtonStyles>Editar produto</ButtonStyles>
+                <ButtonStyles>Editar produtos</ButtonStyles>
 
             </form>
         </Container>
