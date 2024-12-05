@@ -6,8 +6,8 @@ import formatCurrency from "../../utils/formatCurrency.jsx";
 
 
 export function CartItems() {
-    const { cartProducts , increaseProducts, decreaseProducts} = useCart()
-    console.log(cartProducts)
+    const { cartProducts , increaseProductQuantity, decreaseProductQuantity} = useCart()
+    
     return (
         <Container>
             <Header>
@@ -25,9 +25,9 @@ export function CartItems() {
                         <p>{product.name}</p>
                         <p>{formatCurrency(product.price)}</p>
                         <div className="quantity-container">
-                            <button onClick={()=> decreaseProducts(product.id)}>-</button>
+                            <button onClick={()=> decreaseProductQuantity(product.id)}>-</button>
                             <p>{product.quantity}</p>
-                            <button onClick={() => increaseProducts(product.id)}>+</button>
+                            <button onClick={() => increaseProductQuantity(product.id)}>+</button>
                         </div>
                         <p>{formatCurrency(product.quantity * product.price)}</p>
 
