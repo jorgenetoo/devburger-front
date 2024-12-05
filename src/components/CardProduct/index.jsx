@@ -9,7 +9,7 @@ import {useNavigate} from 'react-router-dom'
 
 export function CardProduct({ product }) {
     const { putProductInCart } = useCart()
-    const { navigate } = useNavigate()
+    const  navigate  = useNavigate()
 
     return (
         <Container>

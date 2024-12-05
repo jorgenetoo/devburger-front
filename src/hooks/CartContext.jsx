@@ -2,6 +2,7 @@ import React, { createContext, useContext, useEffect, useState } from "react";
 
 import PropTypes from 'prop-types'
 
+
 const CartContext = createContext({})
 
 export const CartProvider = ({ children }) => {
@@ -33,6 +34,11 @@ export const CartProvider = ({ children }) => {
 
         await updateLocalStorage(newCartProducts)
 
+    }
+
+    const clearCart =  () =>{
+        setCartProducts([])
+        updateLocalStorage([])
     }
 
     const deleteProducts = async productId => {

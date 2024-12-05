@@ -8,6 +8,7 @@ flex-direction: column;
 align-items: center;
 gap:35px;
 padding: 35px 0;
+cursor: grab;
 
 .rec.rec-arrow{
     background-color: #9758a6;

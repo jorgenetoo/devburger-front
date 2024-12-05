@@ -13,15 +13,17 @@ import { useNavigate } from 'react-router-dom'
 export function OffersCarousel() {
     const [offers, setOffers] = useState([])
     const { putProductInCart } = useCart()
-    const { navigate } = useNavigate()
+    const navigate = useNavigate()
 
     useEffect(() => {
         async function loadOffers() {
             const { data } = await api.get("/products")
 
-            const onlyOffers = data.filter(products => products.offer).map(product => {
-                return { ...product, formatedPrice: formatCurrency(product.price) }
-            })
+            const onlyOffers = data
+                .filter(products => products.offer)
+                .map(product => {
+                    return { ...product, formatedPrice: formatCurrency(product.price) }
+                })
 
             setOffers(onlyOffers)
 

@@ -31,7 +31,7 @@ export function CategoryCarousel() {
         <Container>
             <CategoryImg src={Category} alt='logo da categoria' />
 
-            <Carousel itemsToShow={5} style={{ width: '90%'}} breakPoints={breakPoints}>
+            <Carousel itemsToShow={5} style={{ width: '90%'}} breakPoints={breakPoints} infinite={true} partialVisible={false}>
                 {
                     categories && categories.map(category => (
                         <ContainerItems key={category.id}>

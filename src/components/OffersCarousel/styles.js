@@ -8,6 +8,7 @@ align-items: center;
 gap: 35px;
 padding: 35px 0;
 
+
 .rec.rec-arrow {
     background-color: #9758a6;
     color: #efefef;
